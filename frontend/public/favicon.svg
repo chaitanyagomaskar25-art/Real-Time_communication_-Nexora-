@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="nexora-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#4338ca" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#6366f1" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#nexora-grad)"/>
+  <path d="M9 23V9L15 16V23H9Z" fill="white" fill-opacity="0.95"/>
+  <path d="M23 9V23L17 16V9H23Z" fill="#ddd6fe"/>
+  <circle cx="16" cy="16" r="2.5" fill="#ffffff" filter="url(#glow)"/>
+</svg>

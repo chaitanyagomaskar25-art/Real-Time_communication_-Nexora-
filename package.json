@@ -1,0 +1,29 @@
+{
+  "name": "connectsphere",
+  "version": "1.0.0",
+  "description": "ConnectSphere - Real-Time Communication and Video Conferencing Platform",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "start:backend": "npm --prefix backend start",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "test": "npm --prefix backend test",
+    "test:unit": "node --test backend/tests/unit/*.test.js",
+    "test:integration": "node --test backend/tests/integration/*.test.js",
+    "test:e2e": "playwright test",
+    "test:all": "npm run test && npm run test:unit && npm run test:integration && npm run test:e2e",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint"
+  },
+  "keywords": [
+    "mern",
+    "webrtc",
+    "socketio",
+    "video-call"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2"
+  }
+}

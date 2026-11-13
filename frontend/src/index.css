@@ -1,0 +1,443 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   NEXORA DESIGN SYSTEM TOKENS
+   Premium Indigo, Violet & Lavender Identity with Warm Light & Deep Dark Surfaces
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --nx-font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--nx-font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  color-scheme: light dark;
+
+  /* LIGHT THEME TOKENS (Warm white, soft lavender, subtle gray surfaces) */
+  --nx-bg-canvas: #f8f7fd;
+  --nx-bg-surface: #ffffff;
+  --nx-bg-surface-elevated: #ffffff;
+  --nx-bg-surface-subtle: #f3f1fa;
+  --nx-bg-surface-muted: #eae6f5;
+
+  --nx-border-subtle: #ede9f5;
+  --nx-border-default: #e0dbe9;
+  --nx-border-strong: #c8c0db;
+  --nx-border-accent: rgba(99, 102, 241, 0.28);
+
+  --nx-text-primary: #0f101d;
+  --nx-text-secondary: #4b4e68;
+  --nx-text-muted: #747895;
+  --nx-text-tertiary: #9ea1bd;
+
+  /* Brand Core (Indigo / Violet) */
+  --nx-brand-50: #f5f3ff;
+  --nx-brand-100: #ede9fe;
+  --nx-brand-200: #ddd6fe;
+  --nx-brand-300: #c4b5fd;
+  --nx-brand-400: #a78bfa;
+  --nx-brand-500: #818cf8;
+  --nx-brand-600: #6366f1;
+  --nx-brand-700: #4f46e5;
+  --nx-brand-800: #4338ca;
+  --nx-brand-900: #312e81;
+
+  /* Violet Accents */
+  --nx-violet-400: #c084fc;
+  --nx-violet-500: #a855f7;
+  --nx-violet-600: #9333ea;
+
+  /* Shadows (Tuned for warm lavender light surfaces) */
+  --nx-shadow-subtle: 0 1px 2px 0 rgba(28, 20, 56, 0.04);
+  --nx-shadow-card: 0 1px 3px 0 rgba(28, 20, 56, 0.05), 0 1px 2px -1px rgba(28, 20, 56, 0.04);
+  --nx-shadow-elevated: 0 8px 24px -4px rgba(45, 30, 90, 0.08), 0 2px 6px -2px rgba(45, 30, 90, 0.04);
+  --nx-shadow-popover: 0 20px 32px -8px rgba(45, 30, 90, 0.12), 0 6px 14px -4px rgba(45, 30, 90, 0.05);
+  --nx-shadow-glow: 0 0 24px -2px rgba(99, 102, 241, 0.22);
+}
+
+/* DARK THEME TOKENS (Deep charcoal, muted violet, layered dark surfaces) */
+.dark, [data-theme="dark"] {
+  --nx-bg-canvas: #090915;
+  --nx-bg-surface: #111122;
+  --nx-bg-surface-elevated: #16172e;
+  --nx-bg-surface-subtle: #1c1e38;
+  --nx-bg-surface-muted: #232544;
+
+  --nx-border-subtle: #191b33;
+  --nx-border-default: #252846;
+  --nx-border-strong: #363960;
+  --nx-border-accent: rgba(139, 92, 246, 0.35);
+
+  --nx-text-primary: #f6f7fb;
+  --nx-text-secondary: #c5c8de;
+  --nx-text-muted: #8a8fae;
+  --nx-text-tertiary: #5d6282;
+
+  /* Shadows (Deep atmospheric elevation with subtle violet glow) */
+  --nx-shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --nx-shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.35);
+  --nx-shadow-elevated: 0 8px 24px -4px rgba(0, 0, 0, 0.65), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+  --nx-shadow-popover: 0 20px 32px -8px rgba(0, 0, 0, 0.8), 0 8px 16px -4px rgba(0, 0, 0, 0.5);
+  --nx-shadow-glow: 0 0 26px -2px rgba(139, 92, 246, 0.28);
+}
+
+/* ==========================================================================
+   GLOBAL BASE STYLES
+   ========================================================================== */
+
+body {
+  @apply bg-slate-50 text-slate-900 dark:bg-dark-950 dark:text-slate-100 antialiased min-h-screen selection:bg-brand-500/20 selection:text-brand-900 dark:selection:bg-brand-500/30 dark:selection:text-brand-200;
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--nx-brand-500);
+  outline-offset: 2px;
+}
+
+/* Modern custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(158, 161, 189, 0.4);
+  border-radius: 9999px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(93, 98, 130, 0.45);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(116, 120, 149, 0.65);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(138, 143, 174, 0.65);
+}
+
+/* ==========================================================================
+   NEXORA UTILITY & BRAND COMPONENTS
+   ========================================================================== */
+
+/* Distinctive NEXORA Gradient Text */
+.nx-gradient-text {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .nx-gradient-text {
+  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 55%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Refined interactive card */
+.nx-card {
+  background-color: var(--nx-bg-surface);
+  border: 1px solid var(--nx-border-default);
+  box-shadow: var(--nx-shadow-card);
+  border-radius: 1rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nx-card-interactive {
+  background-color: var(--nx-bg-surface);
+  border: 1px solid var(--nx-border-default);
+  box-shadow: var(--nx-shadow-card);
+  border-radius: 1rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nx-card-interactive:hover {
+  border-color: var(--nx-border-accent);
+  box-shadow: var(--nx-shadow-elevated);
+  transform: translateY(-1px);
+}
+
+/* Elegant brand hairline glow */
+.nx-glow-border {
+  position: relative;
+}
+
+.nx-glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.3) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Video mirrored for WebRTC local camera feed */
+.mirror {
+  transform: scaleX(-1);
+}
+
+/* Floating animation for in-meeting emoji reactions */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(-20px) scale(1.15);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-130px) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.85);
+    opacity: 0;
+  }
+}
+
+.animate-float-up {
+  animation: floatUp 3.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Mobile touch & viewport stabilization */
+html, body, #root {
+  overflow-x: hidden;
+  max-width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safe area insets for mobile devices with home indicator / notch */
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.pt-safe {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+/* ==========================================================================
+   PREMIUM NEXORA VISUAL PERSONALITY DETAILS
+   Subtle background decorations, micro-interactions & non-aggressive animations
+   ========================================================================== */
+
+/* Subtle Ambient Background Dot Grid */
+.nx-bg-dots {
+  background-image: radial-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .nx-bg-dots, [data-theme="dark"] .nx-bg-dots {
+  background-image: radial-gradient(rgba(167, 139, 250, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Subtle Geometric Grid */
+.nx-bg-grid {
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.dark .nx-bg-grid, [data-theme="dark"] .nx-bg-grid {
+  background-image: 
+    linear-gradient(to right, rgba(167, 139, 250, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(167, 139, 250, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Non-Aggressive Breathing Presence Halo (Smooth 3s Cycle) */
+@keyframes nxBreathingHalo {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);
+  }
+}
+
+.nx-presence-online {
+  animation: nxBreathingHalo 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Subtle Shimmer for Skeletons */
+@keyframes nxShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.nx-skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(226, 232, 240, 0.5) 0%,
+    rgba(241, 245, 249, 0.85) 50%,
+    rgba(226, 232, 240, 0.5) 100%
+  );
+  background-size: 200% 100%;
+  animation: nxShimmer 2s ease-in-out infinite;
+}
+
+.dark .nx-skeleton-shimmer, [data-theme="dark"] .nx-skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 0%,
+    rgba(51, 65, 85, 0.7) 50%,
+    rgba(30, 41, 59, 0.6) 100%
+  );
+  background-size: 200% 100%;
+  animation: nxShimmer 2s ease-in-out infinite;
+}
+
+/* Interactive Card Elevation & Micro-transitions */
+.nx-card-interactive {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nx-card-interactive:hover {
+  transform: translateY(-2px);
+}
+
+/* Respect System Prefers-Reduced-Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .nx-presence-online,
+  .nx-skeleton-shimmer,
+  .animate-float-up,
+  .animate-bounce,
+  .animate-pulse,
+  .nx-constellation-spin,
+  .nx-constellation-spin-reverse {
+    animation: none !important;
+  }
+
+  .nx-card-interactive:hover {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   NEXORA BESPOKE IDENTITY STYLES
+   Distinctive, recognizable elements that elevate NEXORA beyond conventional apps
+   ========================================================================== */
+
+/* 1. Asymmetric Chamfered Capsule Message Bubbles */
+.nx-bubble-incoming {
+  border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
+  border-left: 3.5px solid var(--nx-brand-500);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 10px -2px rgba(45, 30, 90, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.dark .nx-bubble-incoming, [data-theme="dark"] .nx-bubble-incoming {
+  background: rgba(22, 23, 46, 0.92);
+  border-left: 3.5px solid var(--nx-violet-400);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.nx-bubble-incoming-consecutive {
+  border-radius: 0.5rem 1.25rem 1.25rem 0.5rem;
+}
+
+.nx-bubble-outgoing {
+  border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 45%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px -2px rgba(99, 102, 241, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.nx-bubble-outgoing-consecutive {
+  border-radius: 1.25rem 0.5rem 0.5rem 1.25rem;
+}
+
+/* 2. Active Conversation Blade & Glow */
+.nx-active-blade {
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 3.5px;
+  border-radius: 0 9999px 9999px 0;
+  background: linear-gradient(180deg, #818cf8 0%, #c084fc 50%, #6366f1 100%);
+  box-shadow: 0 0 14px rgba(167, 139, 250, 0.7);
+}
+
+/* 3. The Nexora Floating Command Composer */
+.nx-composer-capsule {
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(224, 219, 233, 0.9);
+  box-shadow: 0 8px 32px -4px rgba(45, 30, 90, 0.08);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .nx-composer-capsule, [data-theme="dark"] .nx-composer-capsule {
+  background: rgba(17, 17, 34, 0.85);
+  border: 1px solid rgba(37, 40, 70, 0.9);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.55);
+}
+
+.nx-composer-capsule:focus-within {
+  border-color: rgba(129, 140, 248, 0.7);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15), 0 8px 32px -4px rgba(99, 102, 241, 0.12);
+}
+
+/* 4. Welcome Screen Constellation Core Animations */
+@keyframes nxOrbitalSpinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nxOrbitalSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.nx-constellation-spin {
+  animation: nxOrbitalSpinSlow 40s linear infinite;
+}
+
+.nx-constellation-spin-reverse {
+  animation: nxOrbitalSpinReverse 55s linear infinite;
+}
+
+
+
